@@ -1,0 +1,114 @@
+
+		body, html{
+			background:transparent linear-gradient(#000, #448049) repeat scroll 0% 0%;
+			margin:0;
+			padding;0;
+				height: 100%;
+		 }
+		 /*making whole thing to be in Single page*/
+			#wrapper{
+				height:100%;
+			}
+			
+			#header{
+				height: 10%;	
+				text-align: center;			
+			}
+			
+			#item{
+				height:70%;	
+				background-color: rgba(133, 212, 122, 0.47);		
+				text-align: center;
+			}
+			
+			#footer{
+				height: 8%;
+				background-color: #85AD2D;	
+				text-align: center;		
+			}
+		
+		/*.form-horizontal{
+			border: 2px solid green;		
+		}*/
+		
+		#first{
+			margin-top: 25px;		
+		}
+		
+		fieldset.scheduler-border {
+			color:#00FBBD;
+	background:transparent linear-gradient(#473613, #B4F5BA) repeat scroll 0% 0%;
+   border: 2px groove #C4E7C4 !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend.scheduler-border {
+
+    width:inherit; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+}
+/*carousel*/
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+
+
+#navi > li > a {
+  margin-right: 2px;
+  padding-right:50px;
+  padding-left: 50px;
+  line-height: 1.42857143;
+  color:#2CF50E;
+}
+
+#header h2{
+	text-align: center;
+}
+
+#header{
+	width: 100%;
+	/*padding-top: 20px;
+	padding-bottom: 20px;
+	*/
+}
+
+#navi li{
+	background:transparent linear-gradient(#557A2E, #0D110E) repeat scroll 0% 0%;
+	margin-right: 4px;
+}
+#navi li a{
+	color:#45FF21;
+}
+#navi li.active>li{
+	background-color:#fff; ;	
+}
+#navi li a:hover{
+	background:transparent linear-gradient(#20231D, #21983F) repeat scroll 0% 0% ;
+	color: #FFF;  
+}
+
+#navi > li.active > a,
+#navi > li.active > a:hover,
+#navi > li.active > a:focus {
+  color: #555;
+  cursor: default;
+  background-color:#ff9800 ;
+}
+
+#item{
+	background: transparent linear-gradient(#473613, #5EEF69) repeat scroll 0% 0%;
+}
+/*footer section*/
+#footer{
+	margin-top: 20px;
+	background-color: black;
+}
+
+#footer h4{
+text-align: center;}
