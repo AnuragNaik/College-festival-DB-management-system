@@ -1,25 +1,39 @@
 		<?php
 			include('header.php');
+			
 		?>
-<div id="item">
+
 		<?php
+
 			$sql="SELECT event_name FROM EVENT";
 			
 			$result= mysqli_query($conn, $sql);
-			//echo (mysqli_num_rows($result));
-		
+			asort($result);
 			if(isset($_POST['formSubmit'])) 
 			{
 				$event_name = $_POST['event_list'];
-			
+				
 				if(!isset($event_name) || $event_name=="select_event") 
 				{
 					echo "<script>alert(\"Please Select an Event first!\");</script>";
+				}
+				else{
+					
+					$_SESSION['eventname']= $event_name;
+
+					$sql = "SELECT event_id FROM `EVENT` WHERE event_name='".$event_name."'";
+					$result1= mysqli_query($conn, $sql);
+					$row1=mysqli_fetch_array($result1); 
+					$_SESSION['eventid']=$row1[0];
+
+					header('Location: details.php');
 				}	 
 			}
 			
 			?>
-		<form action="details.php" method="POST">		
+<div id="item">
+		
+		<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">		
 			 <div class="form-group" > 	 	
 		
 			<select name='event_list'>
@@ -38,7 +52,9 @@
 	</div>		
 		</form>
 </div>		
+
 		<?php
+			//echo $_SESSION['eventname'];
 			include('footer.php');
 		?>
 		

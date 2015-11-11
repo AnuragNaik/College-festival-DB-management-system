@@ -1,5 +1,4 @@
 <?php
-session_start();
 if( isset( $_POST['submit']))
 {
 	require 'connection.php';
@@ -28,7 +27,7 @@ if( isset( $_POST['submit']))
   	<script type="text/javascript" src="js/myjs.js"></script>
 </head>	
 <body>
-	
+	<!--
 	<?php
 	if(!isset($_SESSION['username']))
 	{
@@ -55,7 +54,7 @@ if( isset( $_POST['submit']))
 		<a href='logout.php'>Logout</a>";
 	}
 ?>
-	
+ -->
 <div id="wrapper">
 	<div id="header">
 		<h2>Welcome to EVENTS PANEL</h2>

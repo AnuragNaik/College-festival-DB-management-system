@@ -1,8 +1,8 @@
 <?php
 session_start();
+include('connection.php');
 if( isset( $_POST['submit']))
 {
-	require 'connection.php';
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	$result = mysqli_query($conn , 'Select * from MANAGING_TEAM where member_id="'.$username.'" and password="'.$password.'"');
@@ -28,8 +28,8 @@ if( isset( $_POST['submit']))
   	<script type="text/javascript" src="js/myjs.js"></script>
 </head>	
 <body>
-	<!--
 	<?php
+	/*
 	if(!isset($_SESSION['username']))
 	{
 	echo "<form method='post' action=" .$_SERVER['PHP_SELF']. " >
@@ -52,18 +52,15 @@ if( isset( $_POST['submit']))
 	{
 		echo "Hello, ".$_SESSION['username'].".";
 		echo "<br>
-		<a href='logout.php'>Logout</a>";
+		<a href='logout.php'>Logout</a>
+		<a href='admin.php'>Admin Home</a>";
 	}
+	*/
 ?>
- -->
 <div id="wrapper">
 	<div id="header">
 		<h2>Welcome to EVENTS PANEL</h2>
 	</div>
-
-	<?php
-		include('connection.php');
-	?>
 
 	<div id="list" class="container">
 		<div class="row">
