@@ -13,18 +13,19 @@ $error = "";
 if (isset($_POST['register_final']))
 {
 
-	$cname = trim($_POST['college_name']);
-	$pnum = $_POST['phone_num'];
 	$team= $_POST['team_name'];
+	
 
 
     $count =1;
     if($i == 1)
     {
-    	$name = trim( $_POST["$count"]);
-
-    	if ((!ctype_alpha(str_replace(array(" ","'", "-"), "",$name))) || empty($name)) { 
-			$error .= '<p class="error">Invalid Member name.</p>';
+		$name = trim( $_POST["$count"]);
+		$sql = "SELECT * FROM PARTICIPANTS WHERE part_id ='".$name."'";
+		$result = mysqli_query($conn, $sql);
+    	
+    	if (mysqli_num_rows($result) == 0){
+			$error .= '<p class="error">Please obtain your fest ID first.</p>';
 		}
 
     }
@@ -33,12 +34,12 @@ if (isset($_POST['register_final']))
 			while($count <= $i)
 			{
 				$name = trim( $_POST["$count"]);
-
-    			if ((!ctype_alpha(str_replace(array(" ","'", "-"), "",$name))) || empty($name)) 
-    			{ 
-					$error .= '<p class="error">Invalid Member name '.$count.'.</p>';
+				$sql = "SELECT * FROM PARTICIPANTS WHERE part_id ='".$name."'";
+				$result = mysqli_query($conn, $sql);
+    	
+				if (mysqli_num_rows($result) == 0){
+					$error .= '<p class="error">Participant '.$count.' please obtain your fest ID first.</p>';
 				}
-
 				$count++;
 			}
 	}
@@ -52,16 +53,6 @@ if (isset($_POST['register_final']))
 	if(mysqli_num_rows($result) > 0)
 		$error .= '<p class="error">Team name already exists.</p>';
 
-	 if(empty($cname))
-    	$error .= '<p class="error">Please enter a college name.</p>';
-    
-	if (!ctype_digit($pnum) OR strlen($pnum) != 10) 
-	{
-			$error .= '<p class="error">Enter a valid 10 digit phone number.</p>';
-		}
-
-
-
 }
 		
 
@@ -71,6 +62,12 @@ if(isset($_POST['register_final']) && $error == "")
 
 		$sql = "INSERT INTO  TEAM (`team_id` ,`team_name` ,`team_strength` ,`team_event_id`) VALUES (NULL , '".$team."',  '$i',  '$j')";
 		$result = mysqli_query($conn,$sql);
+		
+		$sql = "SELECT team_id FROM TEAM WHERE team_name = '".$team."'";
+		$result = mysqli_query($conn, $sql);
+		
+		$row = mysqli_fetch_array($result); 
+		$k = $row[0];
 
 		$count = 1;
 		while( $count <= $i )
@@ -78,7 +75,7 @@ if(isset($_POST['register_final']) && $error == "")
 			//UPDATE  `db_b130974cs`.`EVENT` SET  `num_participants` =  '1' WHERE  `EVENT`.`event_id` =1;
 
 			$name = trim( $_POST["$count"]);
-			$sql = "INSERT INTO REGISTRATION(`reg_id`, `reg_name`, `team_name`, `contact_no`, `college_name`, `reg_event_id`) VALUES (NULL,'".$name."','".$team."','$pnum','".$cname."','$j')";
+			$sql = "INSERT INTO TEAM_PART(team_id, part_id) VALUES ('".$k."', '".$name."')";
 			$result = mysqli_query($conn,$sql);
 
 			$count = $count + 1;
@@ -163,9 +160,9 @@ if(isset($_POST['register_final']) && $error == "")
 		<div class="clo-md-8">
 			<ul id="navi" class="nav nav-tabs">
 				<li><a href="home.php">Home</a></li>
+				<li><a href="part_reg.php">Get Fest ID</a></li>
 				<li><a href="event.php">Events</a></li>
-				<li><a href="registration.php">Registrations</a></li>
-				<li><a href="#">Results</a></li>
+				<li><a href="result.php">Results</a></li>
 				<li><a href="#">Contact</a></li>
 			</ul>
 		</div>
@@ -193,9 +190,9 @@ if(isset($_POST['register_final']) && $error == "")
 		if($i == 1)
 		{
 			echo "<div class=\"form-group\" id=\"first\">
-				<label class=\"control-label col-sm-2\" for=\"reg_name\">Member Name:</label>	 
+				<label class=\"control-label col-sm-2\" for=\"reg_name\">Member ID:</label>	 
 				<div class=\"col-sm-8\">  	 	
-					<input type=\"text\" class=\"form-control\" placeholder=\"Enter name\" name=\"$count\"/>
+					<input type=\"text\" class=\"form-control\" placeholder=\"Enter Participant ID\" name=\"$count\"/>
 				</div>	
 			</div>"	;
 
@@ -205,9 +202,9 @@ if(isset($_POST['register_final']) && $error == "")
 			while($count <= $i)
 			{
 				echo "<div class=\"form-group\" id=\"first\">
-					<label class=\"control-label col-sm-2\" for=\"reg_name\">Member $count Name:</label>	 
+					<label class=\"control-label col-sm-2\" for=\"reg_name\">Member $count ID:</label>	 
 					<div class=\"col-sm-8\">  	 	
-						<input type=\"text\" class=\"form-control\" placeholder=\"Enter name $count\" name=\"$count\"/>
+						<input type=\"text\" class=\"form-control\" placeholder=\"Enter participant ID $count\" name=\"$count\"/>
 					</div>	
 				</div>"	;
 				$count = $count + 1;
@@ -221,20 +218,9 @@ if(isset($_POST['register_final']) && $error == "")
 					<input type="text" class="form-control" placeholder="Enter Team Name" name="team_name"/>
 				</div>	
 			</div>	
+				
 			
-			<div class="form-group" >
-				<label class="control-label col-sm-2" for="college_name">College Name:</label>	 
-				<div class="col-sm-8">  	 	
-					<input type="text" class="form-control" placeholder="Enter College Name" name="college_name"/>
-				</div>	
-			</div>		
-			
-			<div class="form-group" >
-				<label class="control-label col-sm-2" for="contact_no">Mobile Number:</label>	 
-				<div class="col-sm-8">  	 	
-					<input type="text" class="form-control" placeholder="Mobile Number" name="phone_num"/>
-				</div>	
-			</div>		
+	
 				
 			<div class="form-group" >
 					<button  type="submit" class="btn btn-default" name="register_final">Register</button>

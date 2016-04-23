@@ -1,11 +1,18 @@
 <?php
-
+/*
 $servername = "athena.nitc.ac.in";
 $username = "b130611cs";
 $password = "b130611cs";
 $dbname = "db_b130611cs";
 // Create connection
+*/
+$servername = "localhost";
+$username = "root";
+$password = "Codechef";
+$dbname = "pro";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
-
+if($conn){
+	echo " "connected";
+}
 ?>

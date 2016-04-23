@@ -70,9 +70,9 @@ if( isset( $_POST['submit']))
 		<div class="clo-md-8">
 			<ul id="navi" class="nav nav-tabs">
 				<li><a href="home.php">Home</a></li>
+				<li><a href="part_reg.php">Get Fest ID</a></li>
 				<li><a href="event.php">Events</a></li>
-				<li><a href="registration.php">Registrations</a></li>
-				<li><a href="#">Results</a></li>
+				<li><a href="result.php">Results</a></li>
 				<li><a href="#">Contact</a></li>
 			</ul>
 		</div>

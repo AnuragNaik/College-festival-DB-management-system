@@ -6,9 +6,7 @@
 		<?php
 
 			$sql="SELECT event_name FROM EVENT";
-			
 			$result= mysqli_query($conn, $sql);
-			asort($result);
 			if(isset($_POST['formSubmit'])) 
 			{
 				$event_name = $_POST['event_list'];

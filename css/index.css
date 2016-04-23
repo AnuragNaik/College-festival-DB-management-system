@@ -1,8 +1,11 @@
-
+		.input{
+			color: black;
+		}
 		body, html{
 				background: linear-gradient(#000, #448049) repeat scroll 0% 0%;
 				background: url(../img/background.png) repeat;
 				background: url(../img/paper1.jpg) repeat;
+			
 				font-family: sans-serif;
 				margin:0;
 				padding;0;
@@ -57,7 +60,7 @@
 		}
 
 		.form-control{
-			height: 27px;
+			height: 32px;
 			font-size: 13px;
 			font-weight: initial;
 			background-color: rgb(227, 237, 210);
@@ -152,7 +155,6 @@
 	margin-right: 17px
 }
 
-
 .first_col{
 	font-weight: bold;
 	font-family: sans-serif;
@@ -168,3 +170,12 @@
 	border-bottom: 2px solid #131512;
 }
 
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  font: sans-serif;
+  color: black;
+}
